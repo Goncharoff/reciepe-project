@@ -12,7 +12,7 @@ public class Notes {
     @OneToOne
     private Recipe recipe;
 
-    @Lob
+    @Column(length = 2000)
     private String recipeNotes;
 
     public Long getId() {
