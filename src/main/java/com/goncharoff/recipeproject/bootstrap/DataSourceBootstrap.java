@@ -4,6 +4,7 @@ import com.goncharoff.recipeproject.domain.*;
 import com.goncharoff.recipeproject.repositories.CategoryRepository;
 import com.goncharoff.recipeproject.repositories.RecipeRepository;
 import com.goncharoff.recipeproject.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class DataSourceBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
@@ -34,6 +36,7 @@ public class DataSourceBootstrap implements ApplicationListener<ContextRefreshed
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipe());
+        log.debug("Loading bootstrap data");
     }
 
     private List<Recipe> getRecipe() {
