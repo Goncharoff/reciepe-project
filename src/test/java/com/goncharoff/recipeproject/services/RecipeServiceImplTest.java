@@ -37,7 +37,7 @@ public class RecipeServiceImplTest {
         when(recipeRepository.findAll()).thenReturn(recipeData);
 
         Set<Recipe> recipes = recipeService.getAllRecipes();
-        assertEquals(recipes.size(), 0);
+        assertEquals(recipes.size(), 1);
 
         verify(recipeRepository, times(1)).findAll();
     }
