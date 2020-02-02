@@ -30,4 +30,11 @@ public class UnitOfMeasureRepositoryTestIT {
 
         assertEquals("Teaspoon", unitOfMeasure.get().getDescription() );
     }
+
+    @Test
+    public void findByDescriptionCup() {
+        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Cup");
+
+        assertEquals("Cup", unitOfMeasure.get().getDescription() );
+    }
 }
