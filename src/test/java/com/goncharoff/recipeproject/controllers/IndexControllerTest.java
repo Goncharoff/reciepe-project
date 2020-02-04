@@ -1,11 +1,10 @@
 package com.goncharoff.recipeproject.controllers;
 
 import com.goncharoff.recipeproject.domain.Recipe;
-import com.goncharoff.recipeproject.repositories.RecipeRepository;
 import com.goncharoff.recipeproject.services.RecipeService;
-import com.goncharoff.recipeproject.services.RecipeServiceImpl;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -17,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -34,7 +32,7 @@ public class IndexControllerTest {
     Model model;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
