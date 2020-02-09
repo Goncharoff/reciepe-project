@@ -93,7 +93,6 @@ class IngredientServiceImplTest {
                 .next()
                 .setId(3L);
 
-        System.out.println(ingredientCommandToIngredient.convert(command));
 
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
         when(recipeRepository.save(any())).thenReturn(savedRecipe);

@@ -72,10 +72,13 @@ public class IngredientServiceImpl implements IngredientService {
 
         Recipe savedRecipe = recipeRepository.save(recipe);
 
-        return ingredientToIngredientCommand.convert(savedRecipe.getIngredients().stream()
-                .filter(ingredient -> ingredient.getId().equals(ingredientCommand.getId()))
+        Ingredient savedIngredient = savedRecipe.getIngredients().stream()
+                .filter(recipeIngredients -> recipeIngredients.getId().equals(ingredientCommand.getId()))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Can't find saved ingredient.")));
+                .orElse(findUniqIngredient(savedRecipe, ingredientCommand));
+
+
+        return ingredientToIngredientCommand.convert(savedIngredient);
     }
 
     private void updateIngredientFromCommand(Ingredient ingredientFound, IngredientCommand ingredientCommand) {
@@ -87,4 +90,13 @@ public class IngredientServiceImpl implements IngredientService {
         }
     }
 
+    //not totally safe... need to think about
+    private Ingredient findUniqIngredient(Recipe recipe, IngredientCommand ingredientCommand) {
+        return recipe.getIngredients().stream()
+                .filter(recipeIngredients -> recipeIngredients.getDescription().equals(ingredientCommand.getDescription()))
+                .filter(recipeIngredients -> recipeIngredients.getAmount().equals(ingredientCommand.getAmount()))
+                //.filter(recipeIngredients -> recipeIngredients.getUnitOfMeasure().getId().equals(ingredientCommand.getUnitOfMeasure().getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Can not find recipe ingredient with id " + ingredientCommand.getId()));
+    }
 }
