@@ -4,6 +4,7 @@ package com.goncharoff.recipeproject.converters;
 import com.goncharoff.recipeproject.commands.IngredientCommand;
 import com.goncharoff.recipeproject.domain.Ingredient;
 import lombok.Synchronized;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
 
     private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
 
+    @Autowired
     public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand uomConverter) {
         this.uomConverter = uomConverter;
     }
@@ -39,6 +41,7 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
         }
 
         ingredientCommand.setUnitOfMeasure(uomConverter.convert(ingredient.getUnitOfMeasure()));
+
         return ingredientCommand;
     }
 }

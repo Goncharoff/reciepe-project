@@ -24,6 +24,7 @@ public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeas
             uomc.setDescription(unitOfMeasure.getDescription());
             return uomc;
         }
+
         return null;
     }
 }

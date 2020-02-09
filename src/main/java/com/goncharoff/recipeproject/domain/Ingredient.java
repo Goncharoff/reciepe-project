@@ -3,6 +3,7 @@ package com.goncharoff.recipeproject.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
+@ToString(exclude = "recipe")
 public class Ingredient {
 
     @Id
@@ -35,7 +37,6 @@ public class Ingredient {
         this.description = description;
         this.amount = amount;
         this.unitOfMeasure = unitOfMeasure;
-        this.recipe = recipe;
     }
 
     public Ingredient() {
